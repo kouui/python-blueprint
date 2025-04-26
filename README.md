@@ -8,6 +8,7 @@ uv sync
 ```
 
 for pre-commit hooks.
+
 ```bash
 uv run pre-commit install
 ```
@@ -24,5 +25,6 @@ uv run nox -s lint_fix
 uv run nox -s fmt
 ```
 
-
+project blueprint reference:
+https://github.com/johnthagen/python-blueprint
 
