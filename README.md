@@ -25,6 +25,11 @@ uv run nox -s lint_fix
 uv run nox -s fmt
 ```
 
+to import module under develepment
+```
+uv pip install -e .
+```
+
 project blueprint reference:
 https://github.com/johnthagen/python-blueprint
 
