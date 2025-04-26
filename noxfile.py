@@ -110,7 +110,7 @@ def type_check(s: Session) -> None:
 #     s.run("mkdocs", "gh-deploy", "--force", env=doc_env)
 
 
-@session
+@session(venv_backend="none")
 def licenses(s: Session) -> None:
     # Install only main dependencies for license report.
     # s.run_install(
