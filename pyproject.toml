@@ -1,10 +1,8 @@
 [project]
-name = "secioss-anomaly-detection"
+name = "project name"
 version = "0.1.0"
-description = "SECIOSS CO.,LTD. anomaly detection of SSO logs"
+description = "description of this project"
 authors = [
-    { name = "Tetsuya Fujimura", email = "fujimura.tetsuya@plus-zero.co.jp" },
-    { name = "Kazuma Iwase", email = "iwase.kazuma@plus-zero.co.jp" },
     { name = "Yuwei Huang", email = "huang.yuwei@plus-zero.co.jp" }
 ]
 license = "MIT"
@@ -29,7 +27,7 @@ classifiers = [
 ]
 
 [project.urls]
-Repository = "https://github.com/pz-modeling-colin/secioss_anomaly_detection"
+Repository = ""
 
 [project.scripts]
 
