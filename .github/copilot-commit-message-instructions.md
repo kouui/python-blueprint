@@ -1,0 +1,3 @@
+Always generate git commit less than 15 words, if necessary write the detailed summary with item list 1.2.3...
+
+Always generate git commit and push request in English.
