@@ -14,3 +14,9 @@ repos:
         language: system
         pass_filenames: false
         types: [python]
+      - id: licenses
+        name: license check
+        entry: uv run nox -s licenses
+        language: system
+        pass_filenames: false
+        types: [python]
