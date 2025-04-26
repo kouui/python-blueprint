@@ -1,5 +1,5 @@
 [project]
-name = "project name"
+name = "project-name"
 version = "0.1.0"
 description = "description of this project"
 authors = [
