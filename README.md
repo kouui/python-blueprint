@@ -30,6 +30,29 @@ to import module under develepment
 uv pip install -e .
 ```
 
+### auto type annotate generation
+
+reference: https://github.com/getsentry/auto-type-annotate
+add the following two config into pyproject.toml for mypy
+```
+check_untyped_defs = true
+local_partial_types = true
+```
+and then check dmypy server is running
+```bash
+$ uv run dmypy stop
+Daemon stopped
+$ uv run dmypy run
+Daemon started
+Success: no issues found in 6839 source files
+```
+auto annotate some file
+```bash
+auto-type-annotate \
+    --application-directories .:src \
+    src/path/to/authentication.py
+```
+
 project blueprint reference:
 https://github.com/johnthagen/python-blueprint
 
