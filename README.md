@@ -1,9 +1,9 @@
-# Secioss Anomaly Detection
+# project name
 
 ...
 
 ```bash
-cd /path/to/secioss_anomaly_detection
+cd /path/to/this/repository
 uv sync
 ```
 
