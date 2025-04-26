@@ -113,21 +113,21 @@ def type_check(s: Session) -> None:
 @session
 def licenses(s: Session) -> None:
     # Install only main dependencies for license report.
-    s.run_install(
-        "uv",
-        "sync",
-        "--locked",
-        "--no-default-groups",
-        "--no-install-project",
-        f"--python={s.virtualenv.location}",
-        env={"UV_PROJECT_ENVIRONMENT": s.virtualenv.location},
-    )
-    s.run_install(
-        "uv",
-        "pip",
-        "install",
-        "pip-licenses",
-        f"--python={s.virtualenv.location}",
-        env={"UV_PROJECT_ENVIRONMENT": s.virtualenv.location},
-    )
-    s.run("pip-licenses", *s.posargs)
+    # s.run_install(
+    #     "uv",
+    #     "sync",
+    #     "--locked",
+    #     "--no-default-groups",
+    #     "--no-install-project",
+    #     f"--python={s.virtualenv.location}",
+    #     env={"UV_PROJECT_ENVIRONMENT": s.virtualenv.location},
+    # )
+    # s.run_install(
+    #     "uv",
+    #     "pip",
+    #     "install",
+    #     "pip-licenses",
+    #     f"--python={s.virtualenv.location}",
+    #     env={"UV_PROJECT_ENVIRONMENT": s.virtualenv.location},
+    # )
+    s.run("pip-licenses", *s.posargs, external=True)
