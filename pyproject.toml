@@ -9,11 +9,10 @@ license = "MIT"
 readme = "README.md"
 requires-python = ">=3.13,<3.14"
 dependencies = [
-    "auto-type-annotate==1.1.1",
-    "mypy==1.15.0",
     "nox==2025.2.9",
     "pip-licenses>=5.0.0",
     "pre-commit==3.7.0",
+    "pyright>=1.1.400",
     "ruff==0.11.7",
 ]
 classifiers = [
@@ -70,16 +69,22 @@ build-backend = "hatchling.build"
 # avoid being built or installed: https://docs.astral.sh/uv/reference/settings/#package
 package = false
 
-[tool.mypy]
-ignore_missing_imports = true
-strict = true
-check_untyped_defs = true
-local_partial_types = true
-# TODO: Remove this when explicit-override is enabled by default in strict mode
-#   https://github.com/python/mypy/issues/17511
-enable_error_code = ["explicit-override"]
-# If certain strict config options are too pedantic for a project,
-# disable them selectively here by setting to false.
+# [tool.mypy]
+# ignore_missing_imports = true
+# strict = true
+# check_untyped_defs = true
+# local_partial_types = true
+# # TODO: Remove this when explicit-override is enabled by default in strict mode
+# #   https://github.com/python/mypy/issues/17511
+# enable_error_code = ["explicit-override"]
+# # If certain strict config options are too pedantic for a project,
+# # disable them selectively here by setting to false.
+
+[tool.pyright]
+include = ["src"]
+typeCheckingMode = "basic"
+useLibraryCodeForTypes = false
+exclude = []
 
 [tool.ruff]
 line-length = 120

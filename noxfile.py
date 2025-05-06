@@ -79,7 +79,8 @@ def lint_fix(s: Session) -> None:
 @session(venv_backend="none")
 def type_check(s: Session) -> None:
     # s.run("mypy", "src", "tests", "noxfile.py")
-    s.run("mypy", *TO_CHECK)
+    # s.run("mypy", *TO_CHECK)
+    s.run("pyright", *TO_CHECK)
 
 
 # # Environment variable needed for mkdocstrings-python to locate source files.

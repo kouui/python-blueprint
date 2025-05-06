@@ -1,9 +1,9 @@
 """Usage:
-call 
+call
 ```
 from risk_based_auth.utils.logger import LogUtil as logging
 logging.setup_logger(...)
-``` 
+```
 in main.py to setup the logger for the entire project.
 and then use
 ```
@@ -18,10 +18,10 @@ in your library code to log the messages.
 
 import logging
 
-class LogUtil:
 
-    logger : logging.Logger | None = None
-    log_name : str = ''
+class LogUtil:
+    logger: logging.Logger | None = None
+    log_name: str = ""
 
     ## wrap the logging level for convenience
     INFO = logging.INFO
@@ -29,15 +29,16 @@ class LogUtil:
     ERROR = logging.ERROR
     WARNING = logging.WARNING
     CRITICAL = logging.CRITICAL
-    
+
     @classmethod
-    def _get_logger_name(cls):
+    def _get_logger_name(cls) -> str:
         if cls.log_name:
             return cls.log_name
         from pathlib import Path
+
         cls.log_name = Path(__file__).parent.parent.name
         return cls.log_name
-        
+
     @classmethod
     def get_logger(cls, log_name: str | None = None) -> logging.Logger:
         log_name = log_name if log_name is not None else LogUtil._get_logger_name()
@@ -47,27 +48,27 @@ class LogUtil:
     @classmethod
     def info(cls, *args, **kwargs):
         logger = cls.get_logger()
-        return logger.info(args, kwargs)
+        return logger.info(*args, **kwargs)
 
     @classmethod
     def debug(cls, *args, **kwargs):
         logger = cls.get_logger()
-        return logger.debug(args, kwargs)
+        return logger.debug(*args, **kwargs)
 
     @classmethod
     def error(cls, *args, **kwargs):
         logger = cls.get_logger()
-        return logger.error(args, kwargs)
+        return logger.error(*args, **kwargs)
 
     @classmethod
     def critical(cls, *args, **kwargs):
         logger = cls.get_logger()
-        return logger.critical(args, kwargs)
+        return logger.critical(*args, **kwargs)
 
     @classmethod
     def warning(cls, *args, **kwargs):
         logger = cls.get_logger()
-        return logger.warning(args, kwargs)
+        return logger.warning(*args, **kwargs)
 
     @classmethod
     def setup_logger(
@@ -76,19 +77,19 @@ class LogUtil:
         level: int = logging.DEBUG,
         log_file: str | None = None,
         log_file_level: int = logging.DEBUG,
-    ):
+    ) -> None:
         """
         Setup a console/file logger with the specified log name, level and format.
         """
         """ Clear existing handler in root logger"""
         # root_logger = logging.getLogger()
         # [root_logger.removeHandler(h) for h in root_logger.handlers]
-    
+
         """ customize the logger"""
         logger = cls.get_logger(log_name=log_name)
         [logger.removeHandler(h) for h in logger.handlers]
         logger.setLevel(level)
-    
+
         ch = logging.StreamHandler()
         ch.setLevel(level)
         formatter = logging.Formatter(
@@ -102,17 +103,17 @@ class LogUtil:
             datefmt="%Y-%m-%d %H:%M:%S",  # .%f
         )
         ch.setFormatter(formatter)
-    
+
         logger.addHandler(ch)
-    
+
         """ add file handler """
         if log_file is not None:
             fh = logging.FileHandler(log_file, mode="a", encoding="utf-8")
             fh.setLevel(log_file_level)
-    
+
             fh.setFormatter(formatter)
-    
+
             logger.addHandler(fh)
-            
+
         cls.logger = logger
         return None

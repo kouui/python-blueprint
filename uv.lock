@@ -20,20 +20,6 @@ wheels = [
 ]
 
 [[package]]
-name = "auto-type-annotate"
-version = "1.1.1"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "mypy" },
-    { name = "pyupgrade" },
-    { name = "tokenize-rt" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/8b/5e/15c318c1b5d8f1ed8404bb7498d09175614e0016c501cfc803a8efc4fe63/auto_type_annotate-1.1.1.tar.gz", hash = "sha256:ce9a1f7e583386716f3940591b6b7596ae97a5464a6b0ec57cdcd03494f68360", size = 9842 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/13/48/249df1fa066d62bf6ec945517ae3ce593321e0563445487da3f318bcfccf/auto_type_annotate-1.1.1-py2.py3-none-any.whl", hash = "sha256:530e382645d975f10bf6afafd528d93b9bfa819bc82c712500cba45bbe993ec2", size = 10356 },
-]
-
-[[package]]
 name = "cfgv"
 version = "3.4.0"
 source = { registry = "https://pypi.org/simple" }
@@ -220,11 +206,10 @@ name = "project-name"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "auto-type-annotate" },
-    { name = "mypy" },
     { name = "nox" },
     { name = "pip-licenses" },
     { name = "pre-commit" },
+    { name = "pyright" },
     { name = "ruff" },
 ]
 
@@ -241,11 +226,10 @@ type-check = [
 
 [package.metadata]
 requires-dist = [
-    { name = "auto-type-annotate", specifier = "==1.1.1" },
-    { name = "mypy", specifier = "==1.15.0" },
     { name = "nox", specifier = "==2025.2.9" },
     { name = "pip-licenses", specifier = ">=5.0.0" },
     { name = "pre-commit", specifier = "==3.7.0" },
+    { name = "pyright", specifier = ">=1.1.400" },
     { name = "ruff", specifier = "==0.11.7" },
 ]
 
@@ -255,15 +239,16 @@ nox = [{ name = "nox" }]
 type-check = [{ name = "mypy" }]
 
 [[package]]
-name = "pyupgrade"
-version = "3.19.1"
+name = "pyright"
+version = "1.1.400"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "tokenize-rt" },
+    { name = "nodeenv" },
+    { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/35/3a/efa8e75cf84d53f1b3f0113387ab120ef460396a4068e41b6cf18a3d216d/pyupgrade-3.19.1.tar.gz", hash = "sha256:d10e8c5f54b8327211828769e98d95d95e4715de632a3414f1eef3f51357b9e2", size = 45116 }
+sdist = { url = "https://files.pythonhosted.org/packages/6c/cb/c306618a02d0ee8aed5fb8d0fe0ecfed0dbf075f71468f03a30b5f4e1fe0/pyright-1.1.400.tar.gz", hash = "sha256:b8a3ba40481aa47ba08ffb3228e821d22f7d391f83609211335858bf05686bdb", size = 3846546 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/dd/43/c6c1ff945c7900613f6e6ef2a8688639a247d62eb0ffa9935c599f69c08e/pyupgrade-3.19.1-py2.py3-none-any.whl", hash = "sha256:8c5b0bfacae5ff30fa136a53eb7f22c34ba007450d4099e9da8089dabb9e67c9", size = 62412 },
+    { url = "https://files.pythonhosted.org/packages/c8/a5/5d285e4932cf149c90e3c425610c5efaea005475d5f96f1bfdb452956c62/pyright-1.1.400-py3-none-any.whl", hash = "sha256:c80d04f98b5a4358ad3a35e241dbf2a408eee33a40779df365644f8054d2517e", size = 5563460 },
 ]
 
 [[package]]
@@ -306,15 +291,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/e1/72/43b123e4db52144c8add336581de52185097545981ff6e9e58a21861c250/ruff-0.11.7-py3-none-win32.whl", hash = "sha256:f25dfb853ad217e6e5f1924ae8a5b3f6709051a13e9dad18690de6c8ff299e26", size = 10362436 },
     { url = "https://files.pythonhosted.org/packages/c5/a0/3e58cd76fdee53d5c8ce7a56d84540833f924ccdf2c7d657cb009e604d82/ruff-0.11.7-py3-none-win_amd64.whl", hash = "sha256:0a931d85959ceb77e92aea4bbedfded0a31534ce191252721128f77e5ae1f98a", size = 11566676 },
     { url = "https://files.pythonhosted.org/packages/68/ca/69d7c7752bce162d1516e5592b1cc6b6668e9328c0d270609ddbeeadd7cf/ruff-0.11.7-py3-none-win_arm64.whl", hash = "sha256:778c1e5d6f9e91034142dfd06110534ca13220bfaad5c3735f6cb844654f6177", size = 10677936 },
-]
-
-[[package]]
-name = "tokenize-rt"
-version = "6.1.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/6b/0a/5854d8ced8c1e00193d1353d13db82d7f813f99bd5dcb776ce3e2a4c0d19/tokenize_rt-6.1.0.tar.gz", hash = "sha256:e8ee836616c0877ab7c7b54776d2fefcc3bde714449a206762425ae114b53c86", size = 5506 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/87/ba/576aac29b10dfa49a6ce650001d1bb31f81e734660555eaf144bfe5b8995/tokenize_rt-6.1.0-py2.py3-none-any.whl", hash = "sha256:d706141cdec4aa5f358945abe36b911b8cbdc844545da99e811250c0cee9b6fc", size = 6015 },
 ]
 
 [[package]]
