@@ -4,6 +4,7 @@ from nox import Session, param, parametrize, session
 nox.options.error_on_external_run = True
 nox.options.default_venv_backend = "uv"
 nox.options.sessions = ["lint", "type_check"]  # , "test", "docs"]
+TO_CHECK = ["src", "noxfile.py"]
 
 
 # @session(python=["3.9", "3.10", "3.11", "3.12", "3.13"])
@@ -51,7 +52,7 @@ nox.options.sessions = ["lint", "type_check"]  # , "test", "docs"]
             ],
             id="sort_imports",
         ),
-        param(["ruff", "format", "."], id="format"),
+        param(["ruff", "format", *TO_CHECK], id="format"),
     ],
 )
 def fmt(s: Session, command: list[str]) -> None:
@@ -62,8 +63,8 @@ def fmt(s: Session, command: list[str]) -> None:
 @parametrize(
     "command",
     [
-        param(["ruff", "check", "."], id="lint_check"),
-        param(["ruff", "format", "--check", "."], id="format_check"),
+        param(["ruff", "check", *TO_CHECK], id="lint_check"),
+        param(["ruff", "format", "--check", *TO_CHECK], id="format_check"),
     ],
 )
 def lint(s: Session, command: list[str]) -> None:
@@ -72,13 +73,13 @@ def lint(s: Session, command: list[str]) -> None:
 
 @session(venv_backend="none")
 def lint_fix(s: Session) -> None:
-    s.run("ruff", "check", ".", "--extend-fixable", "F401", "--fix")
+    s.run("ruff", "check", *TO_CHECK, "--extend-fixable", "F401", "--fix")
 
 
 @session(venv_backend="none")
 def type_check(s: Session) -> None:
     # s.run("mypy", "src", "tests", "noxfile.py")
-    s.run("mypy", "src", "noxfile.py")
+    s.run("mypy", *TO_CHECK)
 
 
 # # Environment variable needed for mkdocstrings-python to locate source files.
