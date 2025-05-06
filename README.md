@@ -25,7 +25,7 @@ uv run nox -s lint_fix
 uv run nox -s fmt
 ```
 
-to import module under develepment
+(unecessary) to import module under develepment 
 ```
 uv pip install -e .
 ```
