@@ -42,7 +42,7 @@ class LogUtil:
     @classmethod
     def get_logger(cls, log_name: str | None = None) -> logging.Logger:
         log_name = log_name if log_name is not None else LogUtil._get_logger_name()
-        cls.logger = cls.logger if cls.logger is not None else logging.getLogger(log_name)
+        cls.logger = cls.logger if cls.logger is not None else cls.setup_logger(log_name=log_name)
         return cls.logger
 
     @classmethod
@@ -77,7 +77,7 @@ class LogUtil:
         level: int = logging.DEBUG,
         log_file: str | None = None,
         log_file_level: int = logging.DEBUG,
-    ) -> None:
+    ) -> logging.Logger:
         """
         Setup a console/file logger with the specified log name, level and format.
         """
@@ -86,7 +86,7 @@ class LogUtil:
         # [root_logger.removeHandler(h) for h in root_logger.handlers]
 
         """ customize the logger"""
-        logger = cls.get_logger(log_name=log_name)
+        logger = logging.getLogger(log_name)
         [logger.removeHandler(h) for h in logger.handlers]
         logger.setLevel(level)
 
@@ -116,4 +116,4 @@ class LogUtil:
             logger.addHandler(fh)
 
         cls.logger = logger
-        return None
+        return logger
