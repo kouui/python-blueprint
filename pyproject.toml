@@ -63,11 +63,14 @@ lint = [
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[tool.hatch.build.targets.wheel]
+packages = ["src/risk_based_auth"]
+
 [tool.uv]
 # default-groups = "all"
 # Non-package applications can uncomment the following line and delete [build-system] section to
 # avoid being built or installed: https://docs.astral.sh/uv/reference/settings/#package
-package = false
+package = true
 
 # [tool.mypy]
 # ignore_missing_imports = true
