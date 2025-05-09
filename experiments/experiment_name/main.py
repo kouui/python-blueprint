@@ -1,4 +1,4 @@
-from risk_based_auth.utils.logger import LogUtil as logging
+from risk_based_auth import logging
 
 logger = logging.setup_logger(level=logging.DEBUG)
 
