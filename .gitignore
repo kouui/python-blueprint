@@ -22,4 +22,3 @@ wheels/
 .github/*-instructions.md
 .github/STYLE_GUIDE*.md
 instructions/
-!instructions/01_prompt.md
