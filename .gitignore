@@ -21,4 +21,5 @@ wheels/
 # prompt files
 # .github/*-instructions.md
 # .github/STYLE_GUIDE*.md
-insturctions/
+instructions/
+!instructions/01_prompt.md
