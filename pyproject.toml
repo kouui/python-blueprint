@@ -116,7 +116,8 @@ select = [
 extend-ignore = [
     "RUF005",
     "RUF012",
-    "N813",  # Camelcase ... imported as lowercase ...
+    "N813",    # Camelcase ... imported as lowercase ...
+    "TID252",  # Prefer absolute imports over relative imports
 ]
 unfixable = [
     # Disable removing unused imports by default and only enable within nox so editors don't delete
