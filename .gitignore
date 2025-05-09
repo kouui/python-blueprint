@@ -19,7 +19,7 @@ wheels/
 .nox/
 
 # prompt files
-# .github/*-instructions.md
-# .github/STYLE_GUIDE*.md
+.github/*-instructions.md
+.github/STYLE_GUIDE*.md
 instructions/
 !instructions/01_prompt.md
