@@ -42,7 +42,7 @@ class LogUtil:
 
     @classmethod
     def get_logger(cls, log_name: str | None = None) -> logging.Logger:
-        log_name = log_name if log_name is not None else LogUtil._get_logger_name()
+        log_name = log_name if log_name is not None else cls._get_logger_name()
         cls.logger = cls.logger if cls.logger is not None else logging.getLogger(log_name)
         return cls.logger
 
@@ -62,7 +62,7 @@ class LogUtil:
         # [root_logger.removeHandler(h) for h in root_logger.handlers]
 
         """ customize the logger"""
-        logger = logging.getLogger(log_name)
+        logger = logging.getLogger(cls._get_logger_name())
         [logger.removeHandler(h) for h in logger.handlers]
         logger.setLevel(level)
 
