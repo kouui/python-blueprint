@@ -2,16 +2,17 @@
 call
 ```
 from risk_based_auth.utils.logger import LogUtil as logging
-logging.setup_logger(...)
+logger = logging.setup_logger(...)
 ```
 in main.py to setup the logger for the entire project.
 and then use
 ```
 from risk_based_auth.utils.logger import LogUtil as logging
-logging.info("your log message")
-logging.debug("your log message")
-logging.error("your log message")
-logging.warning("your log message")
+logger = logging.get_logger()
+logger.info("your log message")
+logger.debug("your log message")
+logger.error("your log message")
+logger.warning("your log message")
 ```
 in your library code to log the messages.
 """
@@ -42,33 +43,8 @@ class LogUtil:
     @classmethod
     def get_logger(cls, log_name: str | None = None) -> logging.Logger:
         log_name = log_name if log_name is not None else LogUtil._get_logger_name()
-        cls.logger = cls.logger if cls.logger is not None else cls.setup_logger(log_name=log_name)
+        cls.logger = cls.logger if cls.logger is not None else logging.getLogger(log_name)
         return cls.logger
-
-    @classmethod
-    def info(cls, *args, **kwargs):
-        logger = cls.get_logger()
-        return logger.info(*args, **kwargs)
-
-    @classmethod
-    def debug(cls, *args, **kwargs):
-        logger = cls.get_logger()
-        return logger.debug(*args, **kwargs)
-
-    @classmethod
-    def error(cls, *args, **kwargs):
-        logger = cls.get_logger()
-        return logger.error(*args, **kwargs)
-
-    @classmethod
-    def critical(cls, *args, **kwargs):
-        logger = cls.get_logger()
-        return logger.critical(*args, **kwargs)
-
-    @classmethod
-    def warning(cls, *args, **kwargs):
-        logger = cls.get_logger()
-        return logger.warning(*args, **kwargs)
 
     @classmethod
     def setup_logger(
@@ -116,4 +92,5 @@ class LogUtil:
             logger.addHandler(fh)
 
         cls.logger = logger
+        logger.info("logger initialized")
         return logger
