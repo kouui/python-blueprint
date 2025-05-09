@@ -70,7 +70,7 @@ packages = ["src/risk_based_auth"]
 # default-groups = "all"
 # Non-package applications can uncomment the following line and delete [build-system] section to
 # avoid being built or installed: https://docs.astral.sh/uv/reference/settings/#package
-package = true
+# package = true
 
 # [tool.mypy]
 # ignore_missing_imports = true
