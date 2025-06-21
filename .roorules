@@ -1,0 +1,88 @@
+# project management
+
+this python project is managed using uv. the OS platform is windows 11. you should
+
+1.  use `uv add <package>` to install dependencies if needed.
+2.  use `uv run </path/to/your-script.py>` to execute scripts, for example `uv run scripts/gui.py`.
+3.  be aware of the environment variables required, such as `AEI_DESK_USERNAME` and `AEI_DESK_PASSWORD`, which are loaded from a `.env` file.
+4.  everytime you make modification to the source code, you should update the `### source code architecture` and `## project architecture` sections in the `.roorules` file to reflect the changes accurately.
+
+## project architecture
+
+1.  **exe/**: Contains scripts and resources for building a standalone executable version of the application using PyInstaller. The `build.ps1` script is the powshell script for building the `exe/release` folder, which contains the exe and other necesarry files.
+2.  **data/**: Stores data files used by the application, primarily the Excel (`.xlsx`) files containing the test cases (e.g., `テスト項目表.xlsx`) and JSON mapping files.
+3.  **src/**: Contains the main source code for the `pz_auto_test` package.
+4.  **experiments/**: Contains experimental scripts and prototypes. These are not part of the main application.
+5.  **scripts/**: Contains entry-point scripts for running the application, such as running the workflow by GUI (`gui.py`).
+
+### source code architecture
+
+This is a detailed overview of the source code (under `src/`) architecture, which is divided into several modules:
+
+*   **`src/pz_auto_test/config`**: Stores global configuration settings.
+    *   `config.py`: Defines global variables `GEMINI_MODEL` and `ROOT_PATH`.
+
+*   **`src/pz_auto_test/agents`**: Defines the core AI agent responsible for interpreting test cases and controlling the browser.
+    *   `agent_playwright.py`:
+        *   `get_agent_async_playwright()`: Configures and returns a `google.adk.agents.llm_agent.LlmAgent`. This agent is equipped with a detailed system prompt to guide its behavior and uses a Playwright MCP toolset to interact with web pages. It dynamically locates the `npm` installation to start the Playwright MCP server.
+    *   `__init__.py`: Exposes `get_agent_async_playwright` for use in other modules.
+
+*   **`src/pz_auto_test/workflows`**: Contains the main business logic for the test automation.
+    *   `test_automation.py`:
+        *   `workflow_test_automation()`: The primary function that orchestrates the testing process. It reads test cases from an Excel file, sets up the agent and session, runs each test case by sending prompts to the agent, and writes the results to a new Excel file.
+    *   `__init__.py`: Exposes `workflow_test_automation` for external use.
+
+*   **`src/pz_auto_test/io`**: Handles all input/output operations.
+    *   `excel_reader.py`:
+        *   `read_test_cases()`: Reads and parses test cases from a `.xlsx` file, mapping human-readable page names to URLs using a separate JSON file.
+    *   `load_page_url_mapping.py`:
+        *   `load_page_url_mapping()`: Reads a JSON file to create a dictionary that maps page names to their corresponding URLs.
+    *   `__init__.py`: Exposes `read_test_cases` for easy import.
+
+*   **`src/pz_auto_test/gui`**: Implements the graphical user interface.
+    *   `gui_gooey.py`:
+        *   `gui_main()`: Uses the `Gooey` library to create a simple GUI that allows users to select the input Excel file.
+    *   `gui_wxasync.py` and `overloads.py`: Provide customizations and asynchronous support for the Gooey interface.
+    *   `gooey_customized_japanese.json`: A language file to display the GUI in Japanese.
+
+*   **`src/pz_auto_test/utils`**: Provides utility functions.
+    *   `load_env.py`: Manages loading of environment variables from a `.env` file.
+    *   `logger.py`: Contains logging configurations.
+
+*   **`src/pz_auto_test/models`**: Defines the data structures used in the application.
+    *   `_models.py`:
+        *   `ResultModel`: A Pydantic model to structure the test results. A commented-out `TestCaseModel` also exists, suggesting a potential future data structure for test cases.
+    *   `__init__.py`: An empty file, indicating that the `models` directory is a Python package.
+
+
+# Coding Style Guide
+
+This document outlines coding standards for our project.
+
+## Python
+
+### Formatting
+- Use trailing commas in multi-line structures
+
+### Naming
+- Variables and functions: `snake_case`
+- Classes: `PascalCase`
+- Constants: `UPPER_SNAKE_CASE`
+- Private members: prefix with underscore `_private_var`
+
+### Strings
+- Use double quotes (`"`) for dict keys and regular strings
+- Use single quotes (`'`) for single characters
+- Use triple double quotes (`"""`) for docstrings and multi-line strings
+- for long strings, use parentheses to break them into multiple lines
+
+### Comments
+- Use `"""` for docstrings for modules, classes, and functions
+- Use `"""` for explaining (the purpose of) complex code blocks
+- Use `#` for inline comments (right after some code) and commenting out code
+- Include type hints in function definitions
+
+### Error Handling
+- Always use try/except blocks for operations that may fail
+- Specify exact exception types when catching exceptions
+- Include logging for exceptions
