@@ -1,3 +1,5 @@
+# update source code architecture in .roorules file
+
 ## purpose
 
 read all files in the src/ directory recursively and .roorules file, and then update the `### source code architecture` section in `.roorules` file if you find any modification is necessary.
