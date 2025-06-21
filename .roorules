@@ -4,8 +4,7 @@ this python project is managed using uv. the OS platform is windows 11. you shou
 
 1.  use `uv add <package>` to install dependencies if needed.
 2.  use `uv run </path/to/your-script.py>` to execute scripts, for example `uv run scripts/gui.py`.
-3.  be aware of the environment variables required, such as `AEI_DESK_USERNAME` and `AEI_DESK_PASSWORD`, which are loaded from a `.env` file.
-4.  everytime you make modification to the source code, you should update the `### source code architecture` and `## project architecture` sections in the `.roorules` file to reflect the changes accurately.
+3.  everytime you make modification to the source code, you should update the `### source code architecture` and `## project architecture` sections in the `.roorules` file to reflect the changes accurately.
 
 ## project architecture
 
