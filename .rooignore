@@ -1,0 +1,9 @@
+data/*.xlsx
+exe/*.exe
+uv.lock
+
+.github/
+.venv
+.ruff_cache/
+
+__pycache__/
